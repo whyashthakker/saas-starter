@@ -158,9 +158,13 @@
   * {
     @apply border-border;
   }
-  body {
+body {
     @apply bg-background text-foreground;
-  }
+}
+
+.sticky-note {
+  @apply bg-yellow-100 p-4 rounded-md shadow-md break-words;
+}
 }
 
 /*
