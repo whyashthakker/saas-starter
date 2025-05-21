@@ -2,9 +2,10 @@ import { getNoteById } from '@/lib/db/queries';
 
 export async function GET(
   _req: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  const note = await getNoteById(Number(params.id));
+  const { id } = await params;
+  const note = await getNoteById(Number(id));
   if (!note) {
     return Response.json({ error: 'Not found' }, { status: 404 });
   }
