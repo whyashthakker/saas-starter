@@ -1,8 +1,13 @@
 import Link from 'next/link';
 import { getNoteById } from '@/lib/db/queries';
 
-export default async function NotePage({ params }: { params: { id: string } }) {
-  const note = await getNoteById(Number(params.id));
+export default async function NotePage({
+  params
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  const note = await getNoteById(Number(id));
   if (!note) {
     return <div className="p-4">Note not found.</div>;
   }
